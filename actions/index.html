@@ -263,7 +263,7 @@ AlphaAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStart</span>();
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 
 <span style="color: #BBB">    </span>text.setText(<span style="background-color: #FFF0F0">&quot;Click on screen to start&quot;</span>);
 <span style="color: #BBB">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333">::</span>CENTER_TOP);
@@ -333,7 +333,7 @@ AlphaAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onTouchStart<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onTouchStart;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
 <span style="color: #BBB">    </span>positionaction.start();
 <span style="color: #BBB">    </span>rotationaction.start();
 <span style="color: #BBB">    </span>scaleaction.start();
@@ -342,12 +342,12 @@ AlphaAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 <span style="color: #BBB">    </span>timedaction.start();
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStep</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onActionStep(){
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>angle<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>M_PI<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">2.0</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>timedaction.getValue();
 <span style="color: #BBB">    </span>polygon4.setPosition(cos(angle)<span style="color: #333">*</span><span style="color: #00D; font-weight: bold">100</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">450</span>,<span style="color: #BBB"> </span>sin(angle)<span style="color: #333">*</span><span style="color: #00D; font-weight: bold">100</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">300</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStart</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onActionStart(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Rotation action Start&quot;</span>);
 }
 </pre></div>
@@ -357,7 +357,7 @@ AlphaAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

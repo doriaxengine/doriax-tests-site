@@ -278,7 +278,7 @@ Shape<span style="color: #333">*</span><span style="color: #BBB"> </span>spheres
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>i<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;<span style="color: #BBB"> </span>i<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>;<span style="color: #BBB"> </span>i<span style="color: #333">++</span>){
 <span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">for</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;<span style="color: #BBB"> </span>j<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">5</span>;<span style="color: #BBB"> </span>j<span style="color: #333">++</span>){
@@ -340,11 +340,11 @@ Shape<span style="color: #333">*</span><span style="color: #BBB"> </span>spheres
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onTouchMove<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onTouchMove;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onViewLoaded</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onViewLoaded(){
 
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onUpdate(){
 <span style="color: #BBB">    </span>text.setText(std<span style="color: #333">::</span>string(<span style="background-color: #FFF0F0">&quot;FPS: &quot;</span>)<span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>std<span style="color: #333">::</span>to_string(Engine<span style="color: #333">::</span>getFramerate()).c_str());
 
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(Input<span style="color: #333">::</span>isKeyPressed(S_KEY_UP)<span style="color: #BBB"> </span><span style="color: #333">||</span><span style="color: #BBB"> </span>Input<span style="color: #333">::</span>isKeyPressed(S_KEY_W)){
@@ -368,7 +368,7 @@ Shape<span style="color: #333">*</span><span style="color: #BBB"> </span>spheres
 
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyDown(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(key<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span>S_KEY_X){
 <span style="color: #BBB">        </span>camera.setPosition(camera.getPosition().x,<span style="color: #BBB"> </span>camera.getPosition().y<span style="color: #333">+</span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span>camera.getPosition().z);
 <span style="color: #BBB">        </span>camera.setTarget(camera.getTarget().x,<span style="color: #BBB"> </span>camera.getTarget().y<span style="color: #333">+</span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span>camera.getTarget().z);
@@ -384,7 +384,7 @@ Shape<span style="color: #333">*</span><span style="color: #BBB"> </span>spheres
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyUp</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyUp(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(key<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span>S_KEY_F){
 <span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #333">!</span>System<span style="color: #333">::</span>instance().isFullscreen())<span style="color: #BBB"> </span>{
 <span style="color: #BBB">            </span>System<span style="color: #333">::</span>instance().requestFullscreen();
@@ -394,14 +394,14 @@ Shape<span style="color: #333">*</span><span style="color: #BBB"> </span>spheres
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
 <span style="color: #BBB">    </span>lastX<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>x;
 <span style="color: #BBB">    </span>lastY<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>y;
 <span style="color: #BBB">    </span>lastPressX<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>x;
 <span style="color: #BBB">    </span>lastPressY<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>y;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchMove(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>difX<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>lastX<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>x;
 <span style="color: #BBB">    </span>lastX<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>x;
 <span style="color: #BBB">    </span>camera.rotateView(<span style="color: #60E; font-weight: bold">0.1</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>difX);
@@ -417,7 +417,7 @@ Shape<span style="color: #333">*</span><span style="color: #BBB"> </span>spheres
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

@@ -267,7 +267,7 @@ Scene<span style="color: #BBB"> </span>scene;
 
 Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">text</span>(<span style="color: #333">&amp;</span>scene);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 
 <span style="color: #BBB">    </span>text.setPosition(<span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
 <span style="color: #BBB">    </span>text.setText(<span style="background-color: #FFF0F0">&quot;Events example: check output&quot;</span>);
@@ -296,40 +296,40 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>setScene(<span style="color: #333">&amp;</span>scene);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onUpdate(){
 
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButtonPress</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onButtonPress(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Button pressed!!&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButtonRelease</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onButtonRelease(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Button released!!&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onButtonMouseMove</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onButtonMouseMove(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Button mouse move!!&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onViewLoaded</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onViewLoaded(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;View loaded&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Touch start %i - %f %f&quot;</span>,<span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span>y);
 }
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchMove(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Touch move %i - %f %f&quot;</span>,<span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span>y);
 }
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchEnd</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchEnd(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Touch end %i - %f %f&quot;</span>,<span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span>y);
 }
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchCancel</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchCancel(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Touch cancel&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>button,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseDown(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>button,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>std<span style="color: #333">::</span>string<span style="color: #BBB"> </span>modifier<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>;
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(mods<span style="color: #BBB"> </span><span style="color: #333">&amp;</span><span style="color: #BBB"> </span>S_MODIFIER_SHIFT)
 <span style="color: #BBB">        </span>modifier<span style="color: #BBB"> </span><span style="color: #333">+=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;shift;&quot;</span>;
@@ -355,7 +355,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Mouse down - %s - %s&quot;</span>,<span style="color: #BBB"> </span>bt.c_str(),<span style="color: #BBB"> </span>modifier.c_str());
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseUp</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>button,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseUp(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>button,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>std<span style="color: #333">::</span>string<span style="color: #BBB"> </span>modifier<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>;
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(mods<span style="color: #BBB"> </span><span style="color: #333">&amp;</span><span style="color: #BBB"> </span>S_MODIFIER_SHIFT)
 <span style="color: #BBB">        </span>modifier<span style="color: #BBB"> </span><span style="color: #333">+=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;shift;&quot;</span>;
@@ -381,28 +381,28 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Mouse up - %s - %s&quot;</span>,<span style="color: #BBB"> </span>bt.c_str(),<span style="color: #BBB"> </span>modifier.c_str());
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseMove</span>(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseMove(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Mouse %f %f&quot;</span>,<span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span>y);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseScroll</span>(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>xoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>yoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseScroll(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>xoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>yoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(xoffset<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span><span style="color: #BBB"> </span><span style="color: #333">||</span><span style="color: #BBB"> </span>yoffset<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
 <span style="color: #BBB">        </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Mouse scroll %f %f&quot;</span>,<span style="color: #BBB"> </span>xoffset,<span style="color: #BBB"> </span>yoffset);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseEnter</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseEnter(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Mouse enter&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseLeave</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseLeave(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Mouse leave&quot;</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onCharInput</span>(<span style="color: #339; font-weight: bold">wchar_t</span><span style="color: #BBB"> </span>codepoint){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onCharInput(<span style="color: #339; font-weight: bold">wchar_t</span><span style="color: #BBB"> </span>codepoint){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;%s&quot;</span>,StringUtils<span style="color: #333">::</span>toUTF8(codepoint).c_str());
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyDown(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>std<span style="color: #333">::</span>string<span style="color: #BBB"> </span>modifier<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>;
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(mods<span style="color: #BBB"> </span><span style="color: #333">&amp;</span><span style="color: #BBB"> </span>S_MODIFIER_SHIFT)
 <span style="color: #BBB">        </span>modifier<span style="color: #BBB"> </span><span style="color: #333">+=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;shift;&quot;</span>;
@@ -424,7 +424,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;KeyDown: %i - %s - %s&quot;</span>,key,<span style="color: #BBB"> </span>modifier.c_str(),<span style="color: #BBB"> </span>rstr.c_str());
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyUp</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyUp(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>std<span style="color: #333">::</span>string<span style="color: #BBB"> </span>modifier<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;&quot;</span>;
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(mods<span style="color: #BBB"> </span><span style="color: #333">&amp;</span><span style="color: #BBB"> </span>S_MODIFIER_SHIFT)
 <span style="color: #BBB">        </span>modifier<span style="color: #BBB"> </span><span style="color: #333">+=</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;shift;&quot;</span>;
@@ -452,7 +452,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

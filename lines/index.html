@@ -251,7 +251,7 @@ Lines<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bo
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y);
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseScroll</span>(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>xoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>yoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 <span style="color: #BBB">    </span>lastTouchPos<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>Vector2(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>);
 
 <span style="color: #BBB">    </span>scene.setCamera(camera.getEntity());
@@ -294,7 +294,7 @@ Lines<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bo
 
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchMove(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>difX<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>lastTouchPos.x<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>x;
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>difY<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>lastTouchPos.y<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>y;
 <span style="color: #BBB">    </span>lastTouchPos<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>Vector2(x,<span style="color: #BBB"> </span>y);
@@ -309,11 +309,11 @@ Lines<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bo
 
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>lastTouchPos<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>Vector2(x,<span style="color: #BBB"> </span>y);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onMouseScroll</span>(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>xoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>yoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onMouseScroll(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>xoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>yoffset,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>camera.zoom(<span style="color: #60E; font-weight: bold">1.0</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>yoffset);
 }
 </pre></div>
@@ -323,7 +323,7 @@ Lines<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bo
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

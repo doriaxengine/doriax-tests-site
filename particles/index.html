@@ -260,7 +260,7 @@ ParticlesType<span style="color: #BBB"> </span>type;
 
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 <span style="color: #BBB">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333">::</span>CENTER_TOP);
 
 <span style="color: #BBB">    </span>text.setText(<span style="background-color: #FFF0F0">&quot;Sprite&quot;</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>parttext);
@@ -320,7 +320,7 @@ ParticlesType<span style="color: #BBB"> </span>type;
 <span style="color: #BBB">    </span>particles.start();
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyDown(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(type<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span>ParticlesType<span style="color: #333">::</span>SPRITES){
 <span style="color: #BBB">        </span>text.setText(<span style="background-color: #FFF0F0">&quot;Points&quot;</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>parttext);
 <span style="color: #BBB">        </span>type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>ParticlesType<span style="color: #333">::</span>POINTS;
@@ -346,7 +346,7 @@ ParticlesType<span style="color: #BBB"> </span>type;
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

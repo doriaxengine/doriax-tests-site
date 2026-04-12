@@ -252,7 +252,7 @@ SpriteAnimation<span style="color: #BBB"> </span><span style="color: #06B; font-
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStart</span>();
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 
 <span style="color: #BBB">    </span>camera.setType(CameraType<span style="color: #333">::</span>CAMERA_ORTHO);
 <span style="color: #BBB">    </span>scene.setCamera(camera.getEntity());
@@ -283,12 +283,12 @@ SpriteAnimation<span style="color: #BBB"> </span><span style="color: #06B; font-
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onTouchStart<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onTouchStart;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y)<span style="color: #BBB"> </span>{
 <span style="color: #BBB">    </span>spriteanim.start();
 <span style="color: #BBB">    </span>sprite2.startAnimation(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">7</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">200</span>,<span style="color: #BBB"> </span><span style="color: #007020">true</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStart</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onActionStart(){
 <span style="color: #BBB">    </span>Log<span style="color: #333">::</span>verbose(<span style="background-color: #FFF0F0">&quot;Sprite start&quot;</span>);
 }
 </pre></div>
@@ -298,7 +298,7 @@ SpriteAnimation<span style="color: #BBB"> </span><span style="color: #06B; font-
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

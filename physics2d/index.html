@@ -305,7 +305,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>ball<span style="color: #333">-&gt;</span>getBody2D().setLinearVelocity(Vector2(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>));<span style="color: #BBB"> </span>
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 
 <span style="color: #BBB">    </span>text.setText(<span style="background-color: #FFF0F0">&quot;Press any key to reset&quot;</span>);
 <span style="color: #BBB">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333">::</span>CENTER_TOP);
@@ -400,8 +400,8 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onKeyDown<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onKeyDown;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>(){
-<span style="color: #BBB">    </span>Ray<span style="color: #BBB"> </span>ray(Vector3(<span style="color: #00D; font-weight: bold">725</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">500</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>));
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onUpdate(){
+<span style="color: #BBB">    </span>Ray<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">ray</span>(Vector3(<span style="color: #00D; font-weight: bold">725</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>),<span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">500</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>));
 <span style="color: #BBB">    </span>RayReturn<span style="color: #BBB"> </span>rret<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>ray.intersects(<span style="color: #333">&amp;</span>scene,<span style="color: #BBB"> </span>RayFilter<span style="color: #333">::</span>BODY_2D);
 
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(rret.hit){
@@ -412,7 +412,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyDown(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 <span style="color: #BBB">    </span>startPositions();
 }
 </pre></div>
@@ -422,7 +422,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

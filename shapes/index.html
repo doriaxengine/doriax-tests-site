@@ -260,7 +260,7 @@ Shape<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bo
 
 TimedAction<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">timedaction</span>(<span style="color: #333">&amp;</span>scene);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 <span style="color: #BBB">    </span>scene.setCamera(camera.getEntity());
 
 <span style="color: #BBB">    </span>camera.setPosition(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">30</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">30</span>);
@@ -304,7 +304,7 @@ TimedAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onTouchMove<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onTouchMove;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onActionStep</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onActionStep(){
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>angle<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>timedaction.getValue()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">360</span>;
 
 <span style="color: #BBB">    </span>Quaternion<span style="color: #BBB"> </span>rot;
@@ -318,7 +318,7 @@ TimedAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 <span style="color: #BBB">    </span>capsule.setRotation(rot);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchMove(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>difX<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>lastTouchPos.x<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>x;
 <span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>difY<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>lastTouchPos.y<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>y;
 <span style="color: #BBB">    </span>lastTouchPos<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>Vector2(x,<span style="color: #BBB"> </span>y);
@@ -327,7 +327,7 @@ TimedAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 <span style="color: #BBB">    </span>camera.elevateView(<span style="color: #60E; font-weight: bold">0.1</span><span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>difY);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>lastTouchPos<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>Vector2(x,<span style="color: #BBB"> </span>y);
 }
 </pre></div>
@@ -337,7 +337,7 @@ TimedAction<span style="color: #BBB"> </span><span style="color: #06B; font-weig
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

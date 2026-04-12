@@ -268,7 +268,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 
 <span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>();
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 
 <span style="color: #BBB">    </span>scene.setGlobalIllumination(<span style="color: #60E; font-weight: bold">0.3</span>);
 <span style="color: #BBB">    </span>scene.setBackgroundColor(<span style="color: #60E; font-weight: bold">0.8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.8</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.8</span>);
@@ -301,12 +301,12 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>carengine.setAttenuationModel(AudioAttenuation<span style="color: #333">::</span>LINEAR_DISTANCE);
 <span style="color: #BBB">    </span>carengine.play();
 
-<span style="color: #BBB">    </span>sky.setTextureFront(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_lf.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureBack(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_rt.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureLeft(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_bk.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureRight(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_ft.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureUp(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_up.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureDown(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_dn.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTextureNegativeZ(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_lf.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTexturePositiveZ(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_rt.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTextureNegativeX(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_bk.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTexturePositiveX(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_ft.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTextureNegativeY(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_dn.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTexturePositiveY(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_up.tga&quot;</span>);
 <span style="color: #BBB">    </span>sky.setAlpha(<span style="color: #60E; font-weight: bold">0.2</span>);
 
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #333">!</span>carlight)
@@ -333,7 +333,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onUpdate<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onUpdate;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onUpdate(){
 
 <span style="color: #BBB">    </span>text.setText(std<span style="color: #333">::</span>to_string(Engine<span style="color: #333">::</span>getFramerate()).c_str());
 
@@ -363,7 +363,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(rotation<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)
 <span style="color: #BBB">        </span>rotation<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">360</span><span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>rotation;
 
-<span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>vDir(cos(Angle<span style="color: #333">::</span>degToRad(rotation<span style="color: #00D; font-weight: bold">-90</span>)),<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span>sin(Angle<span style="color: #333">::</span>degToRad(rotation<span style="color: #00D; font-weight: bold">-90</span>)));
+<span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">vDir</span>(cos(Angle<span style="color: #333">::</span>degToRad(rotation<span style="color: #00D; font-weight: bold">-90</span>)),<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span>sin(Angle<span style="color: #333">::</span>degToRad(rotation<span style="color: #00D; font-weight: bold">-90</span>)));
 
 <span style="color: #BBB">    </span>car.setRotation(<span style="color: #00D; font-weight: bold">0</span>,rotation,<span style="color: #00D; font-weight: bold">0</span>);
 <span style="color: #BBB">    </span>car.setPosition(car.getPosition()<span style="color: #BBB"> </span><span style="color: #333">+</span><span style="color: #BBB"> </span>(vDir<span style="color: #333">*</span>speed));
@@ -377,7 +377,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>

@@ -280,7 +280,7 @@ Text<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bol
 Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">vcontainer</span>(<span style="color: #333">&amp;</span>uiscene);
 Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">hcontainer</span>(<span style="color: #333">&amp;</span>uiscene);
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">init</span>(){
+SUPERNOVA_INIT<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>init(){
 <span style="color: #BBB">    </span>scene.setCamera(camera.getEntity());
 <span style="color: #BBB">    </span>scene.setGlobalIllumination(<span style="color: #60E; font-weight: bold">0.5</span>);
 
@@ -297,7 +297,7 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 
 <span style="color: #BBB">    </span>Camera<span style="color: #333">*</span><span style="color: #BBB"> </span>camera2<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">new</span><span style="color: #BBB"> </span>Camera(<span style="color: #333">&amp;</span>uiscene);
 
-<span style="color: #BBB">    </span>camera2<span style="color: #333">-&gt;</span>setType(CameraType<span style="color: #333">::</span>CAMERA_2D);
+<span style="color: #BBB">    </span>camera2<span style="color: #333">-&gt;</span>setType(CameraType<span style="color: #333">::</span>CAMERA_UI);
 <span style="color: #BBB">    </span>camera2<span style="color: #333">-&gt;</span>setFramebufferSize(<span style="color: #00D; font-weight: bold">1024</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1024</span>);
 <span style="color: #BBB">    </span>camera2<span style="color: #333">-&gt;</span>setRenderToTexture(<span style="color: #007020">true</span>);
 <span style="color: #BBB">    </span>uiscene.setEnableUIEvents(<span style="color: #007020">false</span>);
@@ -432,12 +432,12 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 <span style="color: #BBB">    </span>text.setColor(Vector4(<span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.2</span>,<span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0</span>));
 <span style="color: #BBB">    </span>text.setAnchorPreset(AnchorPreset<span style="color: #333">::</span>CENTER_BOTTOM);
 
-<span style="color: #BBB">    </span>sky.setTextureFront(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_lf.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureBack(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_rt.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureLeft(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_bk.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureRight(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_ft.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureUp(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_up.tga&quot;</span>);
-<span style="color: #BBB">    </span>sky.setTextureDown(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_dn.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTextureNegativeZ(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_lf.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTexturePositiveZ(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_rt.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTextureNegativeX(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_bk.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTexturePositiveX(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_ft.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTextureNegativeY(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_dn.tga&quot;</span>);
+<span style="color: #BBB">    </span>sky.setTexturePositiveY(<span style="background-color: #FFF0F0">&quot;ely_hills/hills_up.tga&quot;</span>);
 
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>setScene(<span style="color: #333">&amp;</span>scene);
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>addSceneLayer(<span style="color: #333">&amp;</span>uiscene);
@@ -451,7 +451,7 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 <span style="color: #BBB">    </span>Engine<span style="color: #333">::</span>onTouchEnd<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>onTouchEnd;
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onUpdate</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onUpdate(){
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(<span style="color: #333">!</span>uiscene.getSystem<span style="color: #333">&lt;</span>UISystem<span style="color: #333">&gt;</span>()<span style="color: #333">-&gt;</span>isTextEditFocused()){
 <span style="color: #BBB">        </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(Input<span style="color: #333">::</span>isKeyPressed(S_KEY_UP)<span style="color: #BBB"> </span><span style="color: #333">||</span><span style="color: #BBB"> </span>Input<span style="color: #333">::</span>isKeyPressed(S_KEY_W)){
 <span style="color: #BBB">            </span>camera.walkForward(<span style="color: #00D; font-weight: bold">1</span>);
@@ -473,17 +473,17 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onCharInput</span>(<span style="color: #339; font-weight: bold">wchar_t</span><span style="color: #BBB"> </span>codepoint){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onCharInput(<span style="color: #339; font-weight: bold">wchar_t</span><span style="color: #BBB"> </span>codepoint){
 <span style="color: #BBB">    </span>uiscene.getSystem<span style="color: #333">&lt;</span>UISystem<span style="color: #333">&gt;</span>()<span style="color: #333">-&gt;</span>eventOnCharInput(codepoint);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onKeyDown</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onKeyDown(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>key,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>repeat,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>mods){
 
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchMove</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchMove(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>normal<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>((wall.getModelMatrix()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>))<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>wall.getWorldPosition()).normalize();
-<span style="color: #BBB">    </span>Plane<span style="color: #BBB"> </span>plane(normal,<span style="color: #BBB"> </span>wall.getWorldPosition());
+<span style="color: #BBB">    </span>Plane<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">plane</span>(normal,<span style="color: #BBB"> </span>wall.getWorldPosition());
 <span style="color: #BBB">    </span>RayReturn<span style="color: #BBB"> </span>rretrun<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>camera.screenToRay(x,<span style="color: #BBB"> </span>y).intersects(plane);
 <span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>point<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>wall.getModelMatrix().inverse()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>rretrun.point;
 
@@ -497,9 +497,9 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchStart</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchStart(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>normal<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>((wall.getModelMatrix()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>))<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>wall.getWorldPosition()).normalize();
-<span style="color: #BBB">    </span>Plane<span style="color: #BBB"> </span>plane(normal,<span style="color: #BBB"> </span>wall.getWorldPosition());
+<span style="color: #BBB">    </span>Plane<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">plane</span>(normal,<span style="color: #BBB"> </span>wall.getWorldPosition());
 <span style="color: #BBB">    </span>RayReturn<span style="color: #BBB"> </span>rretrun<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>camera.screenToRay(x,<span style="color: #BBB"> </span>y).intersects(plane);
 <span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>point<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>wall.getModelMatrix().inverse()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>rretrun.point;
 
@@ -508,38 +508,39 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 <span style="color: #BBB">    </span>}
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onTouchEnd</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onTouchEnd(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>pointer,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>x,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>y){
 <span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>normal<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>((wall.getModelMatrix()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>Vector3(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>))<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>wall.getWorldPosition()).normalize();
-<span style="color: #BBB">    </span>Plane<span style="color: #BBB"> </span>plane(normal,<span style="color: #BBB"> </span>wall.getWorldPosition());
+<span style="color: #BBB">    </span>Plane<span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">plane</span>(normal,<span style="color: #BBB"> </span>wall.getWorldPosition());
 <span style="color: #BBB">    </span>RayReturn<span style="color: #BBB"> </span>rretrun<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>camera.screenToRay(x,<span style="color: #BBB"> </span>y).intersects(plane);
 <span style="color: #BBB">    </span>Vector3<span style="color: #BBB"> </span>point<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>wall.getModelMatrix().inverse()<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>rretrun.point;
 
 <span style="color: #BBB">    </span>uiscene.getSystem<span style="color: #333">&lt;</span>UISystem<span style="color: #333">&gt;</span>()<span style="color: #333">-&gt;</span>eventOnPointerUp(point.x<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1024</span><span style="color: #BBB"> </span><span style="color: #333">/</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">10</span>,<span style="color: #BBB"> </span>(wall.getHeight()<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>point.y)<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1024</span><span style="color: #BBB"> </span><span style="color: #333">/</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">10</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onWindowResize</span>(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>width,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>height){
-<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>bar<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">float</span>)windowcontainer.getHeight()<span style="color: #BBB"> </span><span style="color: #333">/</span><span style="color: #BBB"> </span>(<span style="color: #339; font-weight: bold">float</span>)iconlist.getHeight();
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onWindowResize(<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>width,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>height){
+<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>contentH<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">static_cast</span><span style="color: #333">&lt;</span><span style="color: #339; font-weight: bold">float</span><span style="color: #333">&gt;</span>(iconlist.getContentHeight());
+<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>viewportH<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">static_cast</span><span style="color: #333">&lt;</span><span style="color: #339; font-weight: bold">float</span><span style="color: #333">&gt;</span>(windowcontainer.getHeight());
 
+<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>bar<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>(contentH<span style="color: #BBB"> </span><span style="color: #333">&gt;</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">0.0f</span>)<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span>(viewportH<span style="color: #BBB"> </span><span style="color: #333">/</span><span style="color: #BBB"> </span>contentH)<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0f</span>;
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(bar<span style="color: #BBB"> </span><span style="color: #333">&gt;</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0f</span>)<span style="color: #BBB"> </span>bar<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0f</span>;
 <span style="color: #BBB">    </span>scroll.setBarSize(bar);
 
-<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(bar<span style="color: #BBB"> </span><span style="color: #333">&gt;=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>){
-<span style="color: #BBB">        </span>scroll.setVisible(<span style="color: #007020">false</span>);
-<span style="color: #BBB">    </span>}<span style="color: #080; font-weight: bold">else</span>{
-<span style="color: #BBB">        </span>scroll.setVisible(<span style="color: #007020">true</span>);
-<span style="color: #BBB">    </span>}
+<span style="color: #BBB">    </span>scroll.setVisible(bar<span style="color: #BBB"> </span><span style="color: #333">&lt;</span><span style="color: #BBB"> </span><span style="color: #60E; font-weight: bold">1.0f</span>);
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onChangeScroll</span>(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>step){
-<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>diff<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>iconlist.getHeight()<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>windowcontainer.getHeight();
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onChangeScroll(<span style="color: #339; font-weight: bold">float</span><span style="color: #BBB"> </span>step){
+<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>contentH<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">static_cast</span><span style="color: #333">&lt;</span><span style="color: #339; font-weight: bold">int</span><span style="color: #333">&gt;</span>(iconlist.getContentHeight());
+<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>viewportH<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">static_cast</span><span style="color: #333">&lt;</span><span style="color: #339; font-weight: bold">int</span><span style="color: #333">&gt;</span>(windowcontainer.getHeight());
 
-<span style="color: #BBB">    </span>iconlist.setPositionOffset(Vector2(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span>step<span style="color: #333">*</span>diff));
+<span style="color: #BBB">    </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>scrollRange<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>std<span style="color: #333">::</span>max(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span>contentH<span style="color: #BBB"> </span><span style="color: #333">-</span><span style="color: #BBB"> </span>viewportH);
+<span style="color: #BBB">    </span>iconlist.setPositionOffset(Vector2(<span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span><span style="color: #333">-</span>step<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #BBB"> </span>scrollRange));
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onPress</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onPress(){
 <span style="color: #BBB">    </span>text.setText(textedit.getText());
 }
 
-<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">onPress2</span>(){
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span>onPress2(){
 <span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(text.getAnchorPreset()<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span>AnchorPreset<span style="color: #333">::</span>CENTER_BOTTOM){
 <span style="color: #BBB">        </span>text.setAnchorPreset(AnchorPreset<span style="color: #333">::</span>CENTER_RIGHT);
 <span style="color: #BBB">    </span>}<span style="color: #080; font-weight: bold">else</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(text.getAnchorPreset()<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span>AnchorPreset<span style="color: #333">::</span>CENTER_RIGHT){
@@ -557,7 +558,7 @@ Container<span style="color: #BBB"> </span><span style="color: #06B; font-weight
 </div>
 
 <div class="rodape">
-  <p>Copyright © 2025, Supernova Engine</p>
+  <p>Copyright © 2026, Supernova Engine</p>
   <p>
   This is an open source project<br/>
   Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
