@@ -23,7 +23,7 @@
 
     <link rel="shortcut icon" href="../img/favicon.png"/>
   </head>
-  <body>
+  <body class="has-canvas">
 
     <nav class="navbar">
       <div class="container nav-container">
@@ -55,35 +55,61 @@
           {% if test_change %}<a href="{{ test_change_url }}" class="test-change">{{ test_change }}</a>{% endif %}
         </div>
 
-    <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
-    <div class="emscripten" id="status">Downloading...</div>
-    <div class="emscripten">
-      <progress value="0" max="100" id="progress" hidden=1></progress>  
+    <div class="test-stage" id="test-stage">
+      <div class="canvas-wrapper">
+        <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+        <div class="canvas-loading" id="canvas-loading">
+          <figure style="overflow:visible;" id="spinner"><div class="spinner"></div></figure>
+          <div class="emscripten" id="status">Downloading...</div>
+          <div class="emscripten">
+            <progress value="0" max="100" id="progress" hidden=1></progress>
+          </div>
+        </div>
+      </div>
+      {% if test_output %}
+      <textarea class="emscripten" id="output" rows="8"></textarea>
+      {% endif %}
     </div>
-
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
-    {% if test_output %}
-    <textarea class="emscripten" id="output" rows="8"></textarea>
-    {% endif %}
 
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');
       var spinnerElement = document.getElementById('spinner');
 
-      var wrapper = document.querySelector('.container');
+      var wrapper = document.getElementById('test-stage');
+      var loadingOverlay = document.getElementById('canvas-loading');
+      var changeCanvasSizeFn = null;
+      var lastCanvasWidth = 0;
+      var lastCanvasHeight = 0;
+      var resizeTimer = null;
 
-      window.addEventListener('resize', resizeCanvas, false);
+      window.addEventListener('resize', function() {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resizeCanvas, 100);
+      }, false);
 
       function resizeCanvas() {
-        changeCanvasSize = Module.cwrap('changeCanvasSize',null,['number','number']);
-        changeCanvasSize(wrapper.offsetWidth, wrapper.offsetWidth * 9.0 / 16.0)
+        if (!wrapper) return;
+        if (!changeCanvasSizeFn && typeof Module.cwrap === 'function') {
+          changeCanvasSizeFn = Module.cwrap('changeCanvasSize', null, ['number', 'number']);
+        }
+        if (!changeCanvasSizeFn) return;
+
+        var width = Math.floor(wrapper.clientWidth);
+        var height = Math.floor(width * 9.0 / 16.0);
+
+        if (!width || (width === lastCanvasWidth && height === lastCanvasHeight)) return;
+
+        lastCanvasWidth = width;
+        lastCanvasHeight = height;
+        changeCanvasSizeFn(width, height);
       }
 
       var Module = {
         preRun: [],
         postRun: function() {
-          resizeCanvas()
+          resizeCanvas();
+          if (loadingOverlay) loadingOverlay.style.display = 'none';
         },
         print: (function() {
           var element = document.getElementById('output');
