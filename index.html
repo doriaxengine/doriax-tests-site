@@ -14,296 +14,424 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="css/supernova_samples.css" rel="stylesheet"/>
-		<link href="css/fontello.css" rel="stylesheet"/>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+		<link href="css/doriax_tests.css" rel="stylesheet"/>
 		<link rel="shortcut icon" href="img/favicon.png"/>
 
-		<title>Supernova</title>
+		<title>Doriax Engine — Tests</title>
 	</head>
 	<body>
-		<div class="cabecalho">
-			<div class="wrapper">
-				<a href="http://supernovaengine.org"><img class="cabecalho-logo" src="../img/logo.png"/></a>
-				<div class="cabecalho-links">
-					<ul>
-						<li>
-							<a href="http://docs.supernovaengine.org">
-								<span class="cabecalho-link-imagem icon-book"></span>
-								<span class="cabecalho-link-texto">Documentation</span>
-							</a>
-						</li>
-						<li>
-							<a href="http://samples.supernovaengine.org">
-								<span class="cabecalho-link-imagem icon-doc-text"></span>
-								<span class="cabecalho-link-texto">Samples</span>
-							</a>
-						</li>
-						<li>
-							<a href="https://github.com/supernovaengine/supernova">
-								<span class="cabecalho-link-imagem icon-github"></span>
-								<span class="cabecalho-link-texto">Source</span>
-							</a>
-						</li>
-					</ul>
-				</div>
+
+		<nav class="navbar">
+			<div class="container nav-container">
+				<a href="https://doriax.org" class="nav-logo">
+					<img src="img/logo_part1.png" alt="Doriax Engine" class="nav-logo-icon">
+					<img src="img/logo_part2.png" alt="Doriax" class="nav-logo-wordmark">
+				</a>
+				<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<ul class="nav-links" id="navLinks">
+					<li><a href="https://doriax.org">Home</a></li>
+					<li><a href="./">Tests</a></li>
+					<li><a href="https://github.com/doriaxengine/doriax" target="_blank" rel="noopener noreferrer" class="nav-github">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+					</a></li>
+				</ul>
 			</div>
-		</div>
-		<div class="corpo">
-			<div class="wrapper">
-				<div class="lista-2-colunas">
-					<ul>
-						<li>
-							<div class="samples-imagem"><a href="simple-triangle"><img src="thumb/simple_triangle.png" alt="Simple Triangle" /></a></div>
-							<a href="simple-triangle"><h3>Simple Triangle</h3></a>
-							<p>
+		</nav>
+
+		<div class="page-content">
+			<div class="container">
+				<div class="page-header">
+					<h1 class="page-title">Doriax Engine <span class="text-gradient">Tests</span></h1>
+					<p class="page-subtitle">Interactive examples showcasing the engine's capabilities</p>
+				</div>
+
+				<div class="tests-grid">
+					<div class="test-card">
+						<a href="simple-triangle" class="test-card-thumb">
+							<img src="thumb/simple_triangle.png" alt="Simple Triangle" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="simple-triangle">Simple Triangle</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="simple-triangle">C++</a> / 
+								<a href="simple-triangle">C++</a>
 								
 								<a href="simple-triangle-lua">Lua</a>
 								
-							</p>
-							<p>Drawing a simple colored triangle</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="events"><img src="thumb/events.png" alt="Events" /></a></div>
-							<a href="events"><h3>Events</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Drawing a simple colored triangle</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="events" class="test-card-thumb">
+							<img src="thumb/events.png" alt="Events" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="events">Events</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="events">C++</a>
 								
-							</p>
-							<p>Showing most engine events</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="persistence"><img src="thumb/persistence.png" alt="Persistence" /></a></div>
-							<a href="persistence"><h3>Persistence</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Showing most engine events</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="persistence" class="test-card-thumb">
+							<img src="thumb/persistence.png" alt="Persistence" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="persistence">Persistence</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="persistence">C++</a> / 
+								<a href="persistence">C++</a>
 								
 								<a href="persistence-lua">Lua</a>
 								
-							</p>
-							<p>Saving and loading persistent data</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="car"><img src="thumb/car.png" alt="Car" /></a></div>
-							<a href="car"><h3>Car</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Saving and loading persistent data</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="car" class="test-card-thumb">
+							<img src="thumb/car.png" alt="Car" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="car">Car</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="car">C++</a> / 
+								<a href="car">C++</a>
 								
 								<a href="car-lua">Lua</a>
 								
-							</p>
-							<p>Drive a car in a open world with lights and fog</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="particles"><img src="thumb/particles.png" alt="Particles" /></a></div>
-							<a href="particles"><h3>Particles</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Drive a car in a open world with lights and fog</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="particles" class="test-card-thumb">
+							<img src="thumb/particles.png" alt="Particles" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="particles">Particles</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="particles">C++</a> / 
+								<a href="particles">C++</a>
 								
 								<a href="particles-lua">Lua</a>
 								
-							</p>
-							<p>Two types of particles: with points and sprites</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="particles3d-and-instances"><img src="thumb/particles3d_and_instances.png" alt="3D Particles and Instances" /></a></div>
-							<a href="particles3d-and-instances"><h3>3D Particles and Instances</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Two types of particles: with points and sprites</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="particles3d-and-instances" class="test-card-thumb">
+							<img src="thumb/particles3d_and_instances.png" alt="3D Particles and Instances" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="particles3d-and-instances">3D Particles and Instances</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="particles3d-and-instances">C++</a>
 								
-							</p>
-							<p>Using two types of particles in a 3D environment with instances trees</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="user-interface"><img src="thumb/user_interface.png" alt="User Interface" /></a></div>
-							<a href="user-interface"><h3>User Interface</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Using two types of particles in a 3D environment with instances trees</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="user-interface" class="test-card-thumb">
+							<img src="thumb/user_interface.png" alt="User Interface" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="user-interface">User Interface</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="user-interface">C++</a>
 								
-							</p>
-							<p>User interface sample with windows and other components</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="user-interface-3d"><img src="thumb/user_interface_3d.png" alt="3D User Interface" /></a></div>
-							<a href="user-interface-3d"><h3>3D User Interface</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">User interface sample with windows and other components</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="user-interface-3d" class="test-card-thumb">
+							<img src="thumb/user_interface_3d.png" alt="3D User Interface" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="user-interface-3d">3D User Interface</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="user-interface-3d">C++</a>
 								
-							</p>
-							<p>Same user interface sample but in a 3D environment</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="actions"><img src="thumb/actions.png" alt="Actions" /></a></div>
-							<a href="actions"><h3>Actions</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Same user interface sample but in a 3D environment</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="actions" class="test-card-thumb">
+							<img src="thumb/actions.png" alt="Actions" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="actions">Actions</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="actions">C++</a> / 
+								<a href="actions">C++</a>
 								
 								<a href="actions-lua">Lua</a>
 								
-							</p>
-							<p>Using actions to move objects</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="sprites"><img src="thumb/sprites.png" alt="Sprites" /></a></div>
-							<a href="sprites"><h3>Sprites</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Using actions to move objects</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="sprites" class="test-card-thumb">
+							<img src="thumb/sprites.png" alt="Sprites" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="sprites">Sprites</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="sprites">C++</a> / 
+								<a href="sprites">C++</a>
 								
 								<a href="sprites-lua">Lua</a>
 								
-							</p>
-							<p>Some types of sprite animations</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="tilemap"><img src="thumb/tilemap.png" alt="Tilemap" /></a></div>
-							<a href="tilemap"><h3>Tilemap</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Some types of sprite animations</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="tilemap" class="test-card-thumb">
+							<img src="thumb/tilemap.png" alt="Tilemap" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="tilemap">Tilemap</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="tilemap">C++</a>
 								
-							</p>
-							<p>Walk across a platformer map</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="terrain"><img src="thumb/terrain.png" alt="Terrain" /></a></div>
-							<a href="terrain"><h3>Terrain</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Walk across a platformer map</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="terrain" class="test-card-thumb">
+							<img src="thumb/terrain.png" alt="Terrain" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="terrain">Terrain</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="terrain">C++</a> / 
+								<a href="terrain">C++</a>
 								
 								<a href="terrain-lua">Lua</a>
 								
-							</p>
-							<p>Navigate through a heightmap terrain</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="skeletal-animation"><img src="thumb/skeletal_animation.png" alt="Skeletal Animation" /></a></div>
-							<a href="skeletal-animation"><h3>Skeletal Animation</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Navigate through a heightmap terrain</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="skeletal-animation" class="test-card-thumb">
+							<img src="thumb/skeletal_animation.png" alt="Skeletal Animation" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="skeletal-animation">Skeletal Animation</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="skeletal-animation">C++</a> / 
+								<a href="skeletal-animation">C++</a>
 								
 								<a href="skeletal-animation-lua">Lua</a>
 								
-							</p>
-							<p>Walking model with skeletal animation</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="morph-targets"><img src="thumb/morph_targets.png" alt="Morph Targets" /></a></div>
-							<a href="morph-targets"><h3>Morph Targets</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Walking model with skeletal animation</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="morph-targets" class="test-card-thumb">
+							<img src="thumb/morph_targets.png" alt="Morph Targets" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="morph-targets">Morph Targets</a></h3>
+							<div class="test-card-langs">
 								
-								<a href="morph-targets">C++</a> / 
+								<a href="morph-targets">C++</a>
 								
 								<a href="morph-targets-lua">Lua</a>
 								
-							</p>
-							<p>Morphing a cube model with animation</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="offscreen"><img src="thumb/offscreen.png" alt="Offscreen" /></a></div>
-							<a href="offscreen"><h3>Offscreen</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Morphing a cube model with animation</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="offscreen" class="test-card-thumb">
+							<img src="thumb/offscreen.png" alt="Offscreen" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="offscreen">Offscreen</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="offscreen">C++</a>
 								
-							</p>
-							<p>Draw a entire scene in a texture instead of default viewport</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="billboard"><img src="thumb/billboard.png" alt="Billboard" /></a></div>
-							<a href="billboard"><h3>Billboard</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Draw a entire scene in a texture instead of default viewport</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="billboard" class="test-card-thumb">
+							<img src="thumb/billboard.png" alt="Billboard" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="billboard">Billboard</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="billboard">C++</a>
 								
-							</p>
-							<p>Walk in a scene with text and trees billboards</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="mirror"><img src="thumb/mirror.png" alt="Mirror" /></a></div>
-							<a href="mirror"><h3>Mirror</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Walk in a scene with text and trees billboards</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="mirror" class="test-card-thumb">
+							<img src="thumb/mirror.png" alt="Mirror" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="mirror">Mirror</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="mirror">C++</a>
 								
-							</p>
-							<p>Using a mirror to reflect objects in scene</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="shapes"><img src="thumb/shapes.png" alt="Shapes" /></a></div>
-							<a href="shapes"><h3>Shapes</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Using a mirror to reflect objects in scene</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="shapes" class="test-card-thumb">
+							<img src="thumb/shapes.png" alt="Shapes" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="shapes">Shapes</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="shapes">C++</a>
 								
-							</p>
-							<p>Drawing shapes of box, cylinder, sphere, plane and torus</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="physics2d"><img src="thumb/physics2d.png" alt="Physics 2D" /></a></div>
-							<a href="physics2d"><h3>Physics 2D</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Drawing shapes of box, cylinder, sphere, plane and torus</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="physics2d" class="test-card-thumb">
+							<img src="thumb/physics2d.png" alt="Physics 2D" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="physics2d">Physics 2D</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="physics2d">C++</a>
 								
-							</p>
-							<p>Simple objects demonstrating 2D physics</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="physics3d"><img src="thumb/physics3d.png" alt="Physics 3D" /></a></div>
-							<a href="physics3d"><h3>Physics 3D</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Simple objects demonstrating 2D physics</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="physics3d" class="test-card-thumb">
+							<img src="thumb/physics3d.png" alt="Physics 3D" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="physics3d">Physics 3D</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="physics3d">C++</a>
 								
-							</p>
-							<p>Simple objects demonstrating 3D physics on a plane terrain</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="physics3d-terrain"><img src="thumb/physics3d_terrain.png" alt="Physics terrain" /></a></div>
-							<a href="physics3d-terrain"><h3>Physics terrain</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Simple objects demonstrating 3D physics on a plane terrain</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="physics3d-terrain" class="test-card-thumb">
+							<img src="thumb/physics3d_terrain.png" alt="Physics terrain" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="physics3d-terrain">Physics terrain</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="physics3d-terrain">C++</a>
 								
-							</p>
-							<p>Simple objects demonstrating 3D physics on a heightmap terrain</p>
-						</li>
-						<li>
-							<div class="samples-imagem"><a href="lines"><img src="thumb/lines.png" alt="Lines" /></a></div>
-							<a href="lines"><h3>Lines</h3></a>
-							<p>
+							</div>
+							<p class="test-card-desc">Simple objects demonstrating 3D physics on a heightmap terrain</p>
+						</div>
+					</div>
+					<div class="test-card">
+						<a href="lines" class="test-card-thumb">
+							<img src="thumb/lines.png" alt="Lines" loading="lazy" />
+						</a>
+						<div class="test-card-body">
+							<h3><a href="lines">Lines</a></h3>
+							<div class="test-card-langs">
 								
 								<a href="lines">C++</a>
 								
-							</p>
-							<p>Using lines to draw a grid</p>
-						</li>
-						
-					</ul>
+							</div>
+							<p class="test-card-desc">Using lines to draw a grid</p>
+						</div>
+					</div>
+					
 				</div>
-
 			</div>
 		</div>
 
-		<div class="rodape">
-			<p>Copyright © 2026, Supernova Engine</p>
-			<p>
-			This is an open source project<br/>
-			Source code is licensed by <a href="https://mit-license.org/">MIT License</a><br/>
-			Images, logos, text and website are licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a><br/>
-			</p>
-		</div>
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-grid">
+					<div class="footer-brand">
+						<div class="footer-logo">
+							<img src="img/doriax_logo_transparent.png" alt="Doriax Engine" class="footer-logo-img">
+						</div>
+						<p>A free, lightweight, and efficient open-source game engine for creating 2D and 3D games with Lua or C++.</p>
+						<div class="footer-social">
+							<a href="https://github.com/doriaxengine/doriax" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+							</a>
+							<a href="https://discord.gg/yXXDyJf3gT" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+							</a>
+						</div>
+					</div>
+					<div class="footer-links">
+						<h4>Engine</h4>
+						<ul>
+							<li><a href="https://doriax.org" target="_blank" rel="noopener noreferrer">Website</a></li>
+							<li><a href="https://doriax.org/#download" target="_blank" rel="noopener noreferrer">Download</a></li>
+							<li><a href="./">Tests</a></li>
+						</ul>
+					</div>
+					<div class="footer-links">
+						<h4>Community</h4>
+						<ul>
+							<li><a href="https://github.com/doriaxengine/doriax" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+							<li><a href="https://discord.gg/yXXDyJf3gT" target="_blank" rel="noopener noreferrer">Discord</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>&copy; 2026 Eduardo Doria. Open source under the <a href="https://mit-license.org/" target="_blank" rel="noopener noreferrer">MIT License</a>.</p>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			const navToggle = document.getElementById('navToggle');
+			const navLinks = document.getElementById('navLinks');
+			if (navToggle) {
+				navToggle.addEventListener('click', () => {
+					navToggle.classList.toggle('active');
+					navLinks.classList.toggle('open');
+				});
+			}
+		</script>
 	</body>
 </html>
