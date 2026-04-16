@@ -1,3 +1,3 @@
-# Supernova Engine's samples website
+# Doriax Engine's samples website
 
-This repository contains samples website templates of projects of [Supernova Engine](http://supernovaengine.org)
+This repository contains testes website templates of projects of [Doriax Engine](http://doriax.org)
