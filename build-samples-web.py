@@ -76,76 +76,117 @@ def file_write_contents(filename, content):
     with open(filename, "w") as f:
         f.write(content)
 
-def build_sample(project_name, project_path, app_name, language, samples_ref, languages, output):
+def find_emscripten_toolchain():
+    """Find the Emscripten CMake toolchain file."""
+    # Check EMSDK and EMSCRIPTEN env vars first
+    emsdk = os.environ.get('EMSDK', '')
+    emscripten = os.environ.get('EMSCRIPTEN', '')
+    search_paths = []
+    if emsdk:
+        search_paths.append(emsdk)
+    if emscripten:
+        search_paths.append(os.path.join(emscripten, '..', '..'))
+        search_paths.append(emscripten)
+    # Common locations
+    search_paths.append(os.path.expanduser('~/Development/emsdk'))
+    search_paths.append(os.path.expanduser('~/emsdk'))
+    search_paths.append('/opt/emsdk')
 
-    print("Bulding sample: %s, language: %s" % (project_name, language), flush=True)
+    for base in search_paths:
+        toolchain = os.path.join(base, 'upstream', 'emscripten', 'cmake', 'Modules', 'Platform', 'Emscripten.cmake')
+        if os.path.exists(toolchain):
+            return toolchain
 
-    supernova_root = os.path.abspath('supernova')
-    build_tool = os.path.join(supernova_root, 'tools', 'supernova.py')
+    sys.exit("Error: Could not find Emscripten.cmake toolchain file. Set EMSDK environment variable or install emsdk.")
 
-    #samples_root = os.path.join(supernova_root, 'samples')
-    samples_root = os.path.join('samples')
+def build_test(project_name, project_path, app_name, language, tests_ref, languages, output):
+
+    print("Building test: %s, language: %s" % (project_name, language), flush=True)
+
+    doriax_root = os.path.abspath(os.path.join('doriax', 'engine'))
+    project_cmake_dir = os.path.join(doriax_root, 'project')
+
+    tests_root = os.path.join('samples')
     
-    sample_path = os.path.abspath(os.path.join(samples_root, project_path))
+    test_path = os.path.abspath(os.path.join(tests_root, project_path))
 
     if language == 'cpp':
-        source_sample_path = os.path.join(sample_path, 'main.cpp')
+        source_test_path = os.path.join(test_path, 'main.cpp')
     else:
-        source_sample_path = os.path.join(sample_path, 'lua', 'main.lua')
+        source_test_path = os.path.join(test_path, 'lua', 'main.lua')
 
-    lexer = get_lexer_for_filename(source_sample_path)
-    style = get_style_by_name('colorful')
+    lexer = get_lexer_for_filename(source_test_path)
+    style = get_style_by_name('monokai')
 
-    snippet = codeSnippet(file_get_contents(source_sample_path), lexer, style, True, get_default_style())
+    snippet = codeSnippet(file_get_contents(source_test_path), lexer, style, True, get_default_style())
 
-    shell_file_template = os.path.join('..', 'template', 'sample_shell.html')
-    shell_file = os.path.abspath('sample_shell.html')
+    shell_file_template = os.path.join('..', 'template', 'test_shell.html')
+    shell_file = os.path.abspath('test_shell.html')
 
     lang_change = ''
     lang_change_url = ''
-    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/' + samples_ref + '/' + project_path
+    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/' + tests_ref + '/' + project_path
     if language == 'cpp':
         lang_label = 'C++'
         github_url = github_main_project + '/main.cpp'
-        compile_lang = '--no-lua-init'
         if 'lua' in languages:
-            lang_change = 'Change to Lua sample'
+            lang_change = 'Change to Lua test'
             lang_change_url = '../' + app_name + '-lua'
     else:
         lang_label = 'Lua'
         github_url = github_main_project + '/lua/main.lua'
-        compile_lang = '--no-cpp-init'
         if 'cpp' in languages:
-            lang_change = 'Change to C++ sample'
+            lang_change = 'Change to C++ test'
             lang_change_url = '../' + app_name
 
     t = Template(file_get_contents(shell_file_template))
     shell_content = t.render(
         emscripten="{{{ SCRIPT }}}", 
         code_snippet=snippet,
-        sample_name=project_name,
-        sample_language=lang_label,
-        sample_change=lang_change,
-        sample_change_url=lang_change_url,
-        sample_github_url=github_url,
-        sample_output=output,
+        test_name=project_name,
+        test_language=lang_label,
+        test_change=lang_change,
+        test_change_url=lang_change_url,
+        test_github_url=github_url,
+        test_output=output,
         year=datetime.date.today().year
         )
 
     file_write_contents(shell_file, shell_content)
 
+    # Build using cmake directly
+    build_dir = os.path.abspath('build_web')
+
+    # Delete cmake cache to force reconfiguration with new project settings
+    cmake_cache = os.path.join(build_dir, 'CMakeCache.txt')
+    if os.path.exists(cmake_cache):
+        os.remove(cmake_cache)
+
+    if language == 'cpp':
+        compile_defs = '-DNO_LUA_INIT'
+    else:
+        compile_defs = '-DNO_CPP_INIT'
+
+    emscripten_toolchain = find_emscripten_toolchain()
+
     subprocess.run([
-        sys.executable, build_tool, 
-        '--platform', 'web', 
-        "--project", sample_path, 
-        "--supernova", supernova_root, 
-        "--appname", app_name,
-        "--em-shell-file", shell_file,
-        compile_lang,
-        "--build"
+        'cmake',
+        '-S', project_cmake_dir,
+        '-B', build_dir,
+        '-DCMAKE_TOOLCHAIN_FILE=' + emscripten_toolchain,
+        '-DAPP_NAME=' + app_name,
+        '-DDORIAX_ROOT=' + doriax_root,
+        '-DPROJECT_ROOT=' + test_path,
+        '-DEM_ADDITIONAL_LINK_FLAGS=--shell-file ' + shell_file,
+        '-DCMAKE_CXX_FLAGS=' + compile_defs,
+        '-DCMAKE_C_FLAGS=' + compile_defs,
         ]).check_returncode()
 
-    src_dir = os.path.join(supernova_root, 'tools', 'build', 'web')
+    subprocess.run([
+        'cmake', '--build', build_dir
+        ]).check_returncode()
+
+    src_dir = build_dir
     if language == 'lua':
         dst_dir = os.path.join('site', app_name+'-lua')
     else:
@@ -165,11 +206,11 @@ def build_all():
     with open('samples.yaml') as f:
         data = yaml.load(f, Loader=yaml.FullLoader)
 
-    samples_list_yaml = data['samples']
-    supernovaRepo = data['repo']
+    tests_list_yaml = data['tests']
+    doriaxRepo = data['repo']
     repoRef = data['repoRef']
-    samplesRepo = data['samplesRepo']
-    samplesRef = data['samplesRepoRef']
+    testsRepo = data['testsRepo']
+    testsRef = data['testsRepoRef']
 
     directory = "build"
     if not os.path.exists(directory):
@@ -186,59 +227,60 @@ def build_all():
     copyResourcesDir(os.path.join('..', 'template', 'js'), os.path.join('site','js'))
     copyResourcesDir(os.path.join('..', 'template', 'thumb'), os.path.join('site','thumb'))
 
-    cloneRepo(supernovaRepo, 'supernova', repoRef)
-    cloneRepo(samplesRepo, 'samples', samplesRef)
+    cloneRepo(doriaxRepo, 'doriax', repoRef)
+    cloneRepo(testsRepo, 'samples', testsRef)
 
-    # Call supershader.py before building any samples
-    supernova_root = os.path.abspath('supernova')
-    supershader_tool = os.path.join(supernova_root, 'tools', 'supershader.py')
+    # Call supershader.py before building any tests
+    doriax_root = os.path.abspath(os.path.join('doriax', 'engine'))
+    doriax_repo_root = os.path.abspath('doriax')
+    supershader_tool = os.path.join(doriax_root, 'tools', 'supershader.py')
 
     print("Running supershader.py...", flush=True)
-    subprocess.run([sys.executable, supershader_tool, "-l", "glsl300es"]).check_returncode()
+    subprocess.run([sys.executable, supershader_tool, "-l", "glsl300es", "-r", doriax_repo_root]).check_returncode()
 
-    ### Create samples index
-    samples_list = []
-    for sl in samples_list_yaml: 
-        sample_name = sl['name']
-        sample_desc = sl['desc']
-        sample_path = sl['path']
-        sample_app = sample_path.replace('_','-').replace(' ','-')
-        sample_langs = sl['langs']
+    ### Create tests index
+    tests_list = []
+    for sl in tests_list_yaml: 
+        test_name = sl['name']
+        test_desc = sl['desc']
+        test_path = sl['path']
+        test_app = test_path.replace('_','-').replace(' ','-')
+        test_langs = sl['langs']
         
         langs_links = []
-        for la in sample_langs:
+        for la in test_langs:
             if la=='cpp':
-                langs_links.append({'name': 'C++', 'link': sample_app})
+                langs_links.append({'name': 'C++', 'link': test_app})
             if la=='lua':
-                langs_links.append({'name': 'Lua', 'link': sample_app+'-lua'})  
+                langs_links.append({'name': 'Lua', 'link': test_app+'-lua'})  
 
-        thumb_image = os.path.join('thumb',sample_path.lower()+'.png')
+        thumb_image = os.path.join('thumb',test_path.lower()+'.png')
         if not os.path.exists(os.path.join('site', thumb_image)):
             thumb_image = os.path.join('thumb','default.png')
 
-        samples_list.append({
-            'name': sample_name, 
+        tests_list.append({
+            'name': test_name, 
             'url': langs_links[0]['link'], 
-            'description': sample_desc,
+            'description': test_desc,
             'thumb': thumb_image,
             'langs': langs_links
             })
 
-    ### Build CPP samples
+    ### Build tests
     for lang in ['cpp', 'lua']:
-        for sl in samples_list_yaml:
-            sample_name = sl['name']
-            sample_desc = sl['desc']
-            sample_path = sl['path']
-            sample_app = sample_path.replace('_','-').replace(' ','-')
-            sample_langs = sl['langs']
+        for sl in tests_list_yaml:
+            test_name = sl['name']
+            test_desc = sl['desc']
+            test_path = sl['path']
+            test_app = test_path.replace('_','-').replace(' ','-')
+            test_langs = sl['langs']
             if 'output' in sl:
-                sample_output = sl['output']
+                test_output = sl['output']
             else:
-                sample_output = False
+                test_output = False
 
             if (lang in sl['langs']): 
-                build_sample(sample_name, sample_path, sample_app, lang, samplesRef, sample_langs, sample_output)
+                build_test(test_name, test_path, test_app, lang, testsRef, test_langs, test_output)
 
 
     index_file_template = os.path.join('..', 'template', 'index.html')
@@ -246,7 +288,7 @@ def build_all():
 
     t = Template(file_get_contents(index_file_template))
     index_content = t.render(
-        samples_list=samples_list,
+        tests_list=tests_list,
         year=datetime.date.today().year
         )
 

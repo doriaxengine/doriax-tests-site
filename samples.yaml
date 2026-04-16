@@ -1,12 +1,12 @@
 #build 1
 
-repo: https://github.com/supernovaengine/supernova.git
+repo: https://github.com/doriaxengine/doriax.git
 repoRef: main
 
-samplesRepo: https://github.com/supernovaengine/supernova-samples.git
-samplesRepoRef: main
+testsRepo: https://github.com/supernovaengine/supernova-samples.git
+testsRepoRef: main
 
-samples:
+tests:
 
   - name: "Simple Triangle"
     desc: "Drawing a simple colored triangle"
