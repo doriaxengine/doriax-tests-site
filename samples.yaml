@@ -3,7 +3,7 @@
 repo: https://github.com/doriaxengine/doriax.git
 repoRef: main
 
-testsRepo: https://github.com/supernovaengine/supernova-samples.git
+testsRepo: https://github.com/doriaxengine/doriax-tests.git
 testsRepoRef: main
 
 tests:
