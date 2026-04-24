@@ -104,7 +104,7 @@ def build_test(project_name, project_path, app_name, language, tests_ref, langua
     print("Building test: %s, language: %s" % (project_name, language), flush=True)
 
     doriax_root = os.path.abspath(os.path.join('doriax', 'engine'))
-    project_cmake_dir = os.path.join(doriax_root, 'project')
+    project_cmake_dir = doriax_root
 
     tests_root = os.path.join('samples')
     
