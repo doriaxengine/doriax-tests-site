@@ -169,18 +169,21 @@ def build_test(project_name, project_path, app_name, language, tests_ref, langua
 
     emscripten_toolchain = find_emscripten_toolchain()
 
-    subprocess.run([
+    cmake_args = [
         'cmake',
         '-S', project_cmake_dir,
         '-B', build_dir,
         '-DCMAKE_TOOLCHAIN_FILE=' + emscripten_toolchain,
+        '-DCMAKE_BUILD_TYPE=Release',
         '-DAPP_NAME=' + app_name,
         '-DDORIAX_ROOT=' + doriax_root,
         '-DPROJECT_ROOT=' + test_path,
         '-DEM_ADDITIONAL_LINK_FLAGS=--shell-file ' + shell_file,
         '-DCMAKE_CXX_FLAGS=' + compile_defs,
         '-DCMAKE_C_FLAGS=' + compile_defs,
-        ]).check_returncode()
+    ]
+
+    subprocess.run(cmake_args).check_returncode()
 
     subprocess.run([
         'cmake', '--build', build_dir
@@ -234,6 +237,9 @@ def build_all():
     doriax_root = os.path.abspath(os.path.join('doriax', 'engine'))
     doriax_repo_root = os.path.abspath('doriax')
     supershader_tool = os.path.join(doriax_root, 'tools', 'supershader.py')
+
+    shaders_dir = os.path.join(doriax_repo_root, 'shaders')
+    os.makedirs(shaders_dir, exist_ok=True)
 
     print("Running supershader.py...", flush=True)
     subprocess.run([sys.executable, supershader_tool, "-l", "glsl300es", "-r", doriax_repo_root]).check_returncode()
