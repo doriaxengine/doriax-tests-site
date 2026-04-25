@@ -91,12 +91,6 @@ a:hover { color: var(--accent-3); }
   transition: all var(--transition);
 }
 
-.has-canvas .navbar {
-  background: var(--bg-primary);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
 .nav-container {
   display: flex;
   align-items: center;
@@ -355,11 +349,9 @@ div.emscripten { text-align: center; }
 div.emscripten_border { border: 1px solid var(--border-color); }
 
 canvas.emscripten {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-  border: none;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  max-width: 100%;
 }
 
 #output {
