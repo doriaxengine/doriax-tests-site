@@ -22,7 +22,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install python3-setuptools
+          sudo apt-get update
+          sudo apt-get install -y python3-setuptools libopengl0
           pip3 install --upgrade pip
           if [ -f requirements.txt ]; then pip3 install -r requirements.txt --upgrade; fi
 
