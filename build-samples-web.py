@@ -10,6 +10,11 @@ import shutil
 import subprocess
 import git
 import datetime
+import json
+import stat
+import urllib.error
+import urllib.request
+import zipfile
 
 import re
 from pygments import highlight
@@ -21,6 +26,13 @@ from pygments.styles import get_style_by_name
 from jinja2 import Template
 
 import yaml
+
+GITHUB_API_HEADERS = {
+    'Accept': 'application/vnd.github+json',
+    'User-Agent': 'doriax-tests-site-build-script',
+}
+
+EDITOR_WORKFLOW_FILE = 'cmake.yml'
 
 def copyResourcesDir(src, dst):
     if os.path.exists(src):
@@ -76,6 +88,121 @@ def file_write_contents(filename, content):
     with open(filename, "w") as f:
         f.write(content)
 
+def github_api_get_json(url):
+    request = urllib.request.Request(url, headers=GITHUB_API_HEADERS)
+    try:
+        with urllib.request.urlopen(request) as response:
+            return json.load(response)
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode('utf-8', errors='replace')
+        sys.exit("Error: GitHub API request failed for %s: %s\n%s" % (url, exc, detail))
+
+def download_file(url, filename):
+    request = urllib.request.Request(url, headers={'User-Agent': GITHUB_API_HEADERS['User-Agent']})
+    try:
+        with urllib.request.urlopen(request) as response, open(filename, 'wb') as output:
+            shutil.copyfileobj(response, output)
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode('utf-8', errors='replace')
+        sys.exit("Error: Download failed for %s: %s\n%s" % (url, exc, detail))
+
+def parse_github_repo(repo_url):
+    match = re.match(r'(?:https?://github\.com/|git@github\.com:)([^/]+)/([^/]+?)(?:\.git)?/?$', repo_url)
+    if not match:
+        sys.exit("Error: Expected a GitHub repository URL, got: %s" % repo_url)
+    return match.group(1), match.group(2)
+
+def get_editor_artifact_name():
+    artifact_name = os.environ.get('DORIAX_EDITOR_ARTIFACT')
+    if artifact_name:
+        return artifact_name
+    if sys.platform.startswith('linux'):
+        return 'ubuntu_gcc'
+    if sys.platform == 'darwin':
+        return 'macos_clang'
+    if os.name == 'nt':
+        return 'windows_msvc'
+    sys.exit("Error: Unsupported host platform for doriax-editor artifact download")
+
+def get_editor_executable_name():
+    executable_name = os.environ.get('DORIAX_EDITOR_BINARY')
+    if executable_name:
+        return executable_name
+    if os.name == 'nt':
+        return 'doriax-editor.exe'
+    return 'doriax-editor'
+
+def download_doriax_editor(repo_url, repo_dir):
+    owner, repo_name = parse_github_repo(repo_url)
+    head_sha = git.Repo(repo_dir).head.commit.hexsha
+    artifact_name = get_editor_artifact_name()
+    executable_name = get_editor_executable_name()
+
+    workflow_runs_url = (
+        'https://api.github.com/repos/%s/%s/actions/workflows/%s/runs?head_sha=%s&per_page=100'
+        % (owner, repo_name, EDITOR_WORKFLOW_FILE, head_sha)
+    )
+    workflow_runs = github_api_get_json(workflow_runs_url).get('workflow_runs', [])
+    workflow_run = next((run for run in workflow_runs if run.get('conclusion') == 'success'), None)
+    if workflow_run is None:
+        sys.exit(
+            "Error: Could not find a successful %s workflow run for %s at commit %s"
+            % (EDITOR_WORKFLOW_FILE, repo_name, head_sha)
+        )
+
+    artifacts = github_api_get_json(workflow_run['artifacts_url']).get('artifacts', [])
+    artifact = next(
+        (item for item in artifacts if item.get('name') == artifact_name and not item.get('expired')),
+        None
+    )
+    if artifact is None:
+        artifact_list = ', '.join(item.get('name', '<unknown>') for item in artifacts) or '<none>'
+        sys.exit(
+            "Error: Could not find artifact %s for workflow run %s. Available artifacts: %s"
+            % (artifact_name, workflow_run.get('html_url', workflow_run['url']), artifact_list)
+        )
+
+    download_dir = os.path.abspath(os.path.join('tools', 'doriax-editor', artifact_name))
+    if os.path.exists(download_dir) and os.path.isdir(download_dir):
+        shutil.rmtree(download_dir)
+    os.makedirs(download_dir)
+
+    archive_path = os.path.join(download_dir, artifact_name + '.zip')
+    download_url = 'https://nightly.link/%s/%s/actions/artifacts/%s.zip' % (owner, repo_name, artifact['id'])
+    print("Downloading doriax-editor artifact: %s" % artifact_name, flush=True)
+    download_file(download_url, archive_path)
+
+    with zipfile.ZipFile(archive_path) as archive:
+        archive.extractall(download_dir)
+        if executable_name not in archive.namelist():
+            sys.exit("Error: Artifact %s does not contain %s" % (artifact_name, executable_name))
+        executable_mode = stat.S_IMODE(archive.getinfo(executable_name).external_attr >> 16)
+
+    os.remove(archive_path)
+
+    editor_path = os.path.join(download_dir, executable_name)
+    if os.name != 'nt':
+        if executable_mode == 0:
+            executable_mode = stat.S_IMODE(os.stat(editor_path).st_mode) | stat.S_IXUSR
+        os.chmod(editor_path, executable_mode)
+
+    return download_dir, editor_path
+
+def build_doriax_shaders(repo_url, repo_dir):
+    doriax_root = os.path.abspath(os.path.join(repo_dir, 'engine'))
+    shaders_dir = os.path.join(doriax_root, 'shaders')
+    if os.path.exists(shaders_dir) and os.path.isdir(shaders_dir):
+        shutil.rmtree(shaders_dir)
+    os.makedirs(shaders_dir)
+
+    editor_root, editor_path = download_doriax_editor(repo_url, repo_dir)
+    shader_builder = os.path.abspath(os.path.join('..', 'build_all_shaders.sh'))
+    env = os.environ.copy()
+    env['DORIAX_EDITOR'] = editor_path
+
+    print("Building shader headers with doriax-editor...", flush=True)
+    subprocess.run(['bash', shader_builder, shaders_dir], cwd=editor_root, env=env).check_returncode()
+
 def find_emscripten_toolchain():
     """Find the Emscripten CMake toolchain file."""
     # Check EMSDK and EMSCRIPTEN env vars first
@@ -99,7 +226,7 @@ def find_emscripten_toolchain():
 
     sys.exit("Error: Could not find Emscripten.cmake toolchain file. Set EMSDK environment variable or install emsdk.")
 
-def build_test(project_name, project_path, app_name, language, tests_ref, languages, output):
+def build_test(project_name, project_path, app_name, language, tests_repo, tests_ref, languages, output):
 
     print("Building test: %s, language: %s" % (project_name, language), flush=True)
 
@@ -109,6 +236,8 @@ def build_test(project_name, project_path, app_name, language, tests_ref, langua
     tests_root = os.path.join('samples')
     
     test_path = os.path.abspath(os.path.join(tests_root, project_path))
+    staged_test_path = os.path.abspath('project_web')
+    copyResourcesDir(test_path, staged_test_path)
 
     if language == 'cpp':
         source_test_path = os.path.join(test_path, 'main.cpp')
@@ -125,7 +254,8 @@ def build_test(project_name, project_path, app_name, language, tests_ref, langua
 
     lang_change = ''
     lang_change_url = ''
-    github_main_project = 'https://github.com/supernovaengine/supernova-samples' + '/blob/' + tests_ref + '/' + project_path
+    tests_owner, tests_repo_name = parse_github_repo(tests_repo)
+    github_main_project = 'https://github.com/' + tests_owner + '/' + tests_repo_name + '/blob/' + tests_ref + '/' + project_path
     if language == 'cpp':
         lang_label = 'C++'
         github_url = github_main_project + '/main.cpp'
@@ -157,7 +287,7 @@ def build_test(project_name, project_path, app_name, language, tests_ref, langua
     # Build using cmake directly
     build_dir = os.path.abspath('build_web')
 
-    # Delete cmake cache to force reconfiguration with new project settings
+    # Delete cmake cache to trigger a fresh configure for each sample (APP_NAME changes per sample)
     cmake_cache = os.path.join(build_dir, 'CMakeCache.txt')
     if os.path.exists(cmake_cache):
         os.remove(cmake_cache)
@@ -177,7 +307,8 @@ def build_test(project_name, project_path, app_name, language, tests_ref, langua
         '-DCMAKE_BUILD_TYPE=Release',
         '-DAPP_NAME=' + app_name,
         '-DDORIAX_ROOT=' + doriax_root,
-        '-DPROJECT_ROOT=' + test_path,
+        # Keep the project root path stable so the engine target can reuse compiled objects.
+        '-DPROJECT_ROOT=' + staged_test_path,
         '-DEM_ADDITIONAL_LINK_FLAGS=--shell-file ' + shell_file,
         '-DCMAKE_CXX_FLAGS=' + compile_defs,
         '-DCMAKE_C_FLAGS=' + compile_defs,
@@ -233,16 +364,7 @@ def build_all():
     cloneRepo(doriaxRepo, 'doriax', repoRef)
     cloneRepo(testsRepo, 'samples', testsRef)
 
-    # Call supershader.py before building any tests
-    doriax_root = os.path.abspath(os.path.join('doriax', 'engine'))
-    doriax_repo_root = os.path.abspath('doriax')
-    supershader_tool = os.path.join(doriax_root, 'tools', 'supershader.py')
-
-    shaders_dir = os.path.join(doriax_repo_root, 'shaders')
-    os.makedirs(shaders_dir, exist_ok=True)
-
-    print("Running supershader.py...", flush=True)
-    subprocess.run([sys.executable, supershader_tool, "-l", "glsl300es", "-r", doriax_repo_root]).check_returncode()
+    build_doriax_shaders(doriaxRepo, 'doriax')
 
     ### Create tests index
     tests_list = []
@@ -286,7 +408,7 @@ def build_all():
                 test_output = False
 
             if (lang in sl['langs']): 
-                build_test(test_name, test_path, test_app, lang, testsRef, test_langs, test_output)
+                build_test(test_name, test_path, test_app, lang, testsRepo, testsRef, test_langs, test_output)
 
 
     index_file_template = os.path.join('..', 'template', 'index.html')
