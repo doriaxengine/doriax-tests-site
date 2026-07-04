@@ -13,7 +13,6 @@ OUT="${1:?Usage: $0 <output-dir>}"
 
 exec "$EDITOR" shaders \
   --out "$OUT" \
-  --all-platforms \
   --format header \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4 \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4,Fog \
@@ -21,10 +20,10 @@ exec "$EDITOR" shaders \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4,Fog,Ski \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Fog \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Nmp,Tan,Vc4 \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Nmp,Tan,Vc4,Fog \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Nmp,Tan \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Nmp,Tan,Fog \
+  --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Tan,Vc4 \
+  --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Tan,Vc4,Fog \
+  --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Tan \
+  --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Tan,Fog \
   --shader mesh:Uv1,Puc,Nor,Vc4 \
   --shader mesh:Uv1,Puc,Nor,Vc4,Fog \
   --shader mesh:Uv1,Puc,Nor \
@@ -32,27 +31,27 @@ exec "$EDITOR" shaders \
   --shader mesh:Uv1,Puc,Nor,Vc4,Txr \
   --shader mesh:Uv1,Puc,Nor,Vc4,Txr,Ist \
   --shader mesh:Uv1,Puc,Nor,Vc4,Ist \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Vc4 \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Vc4,Ist \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Vc4,Fog \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Vc4,Txr \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Vc4,Fog,Ist \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Vc4,Txr,Ist \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Ski \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Ski,Ist \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Nmp,Vc4 \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Fog \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Fog,Ist \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Fog,Ski \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4 \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Ist \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Fog \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Txr \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Fog,Ist \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Txr,Ist \
+  --shader mesh:Uv1,Puc,Shw,Nor \
+  --shader mesh:Uv1,Puc,Shw,Nor,Ski \
+  --shader mesh:Uv1,Puc,Shw,Nor,Ski,Ist \
+  --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Vc4 \
+  --shader mesh:Uv1,Puc,Shw,Nor,Fog \
+  --shader mesh:Uv1,Puc,Shw,Nor,Fog,Ist \
+  --shader mesh:Uv1,Puc,Shw,Nor,Fog,Ski \
   --shader mesh:Ult,Uv1,Vc4 \
   --shader mesh:Ult,Uv1,Vc4,Fog \
   --shader mesh:Ult \
   --shader mesh:Ult,Uv1 \
   --shader mesh:Ult,Vc4 \
   --shader mesh:Uv1,Puc,Nor,Ter \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Ter \
-  --shader mesh:Uv1,Puc,Shw,Pcf,Nor,Fog,Ter \
+  --shader mesh:Uv1,Puc,Shw,Nor,Ter \
+  --shader mesh:Uv1,Puc,Shw,Nor,Fog,Ter \
   --shader mesh:Ult,Uv1,Ter \
   --shader mesh:Ult,Ski \
   --shader mesh:Ult,Uv1,Fog \
@@ -64,19 +63,19 @@ exec "$EDITOR" shaders \
   --shader mesh:Ult,Uv1,Vc4,Txr,Fog \
   --shader mesh:Ult,Mta,Mnr,Mtg \
   --shader mesh:Puc,Nor,Vc4,Ski \
-  --shader mesh:Puc,Shw,Pcf,Nor \
-  --shader mesh:Puc,Shw,Pcf,Nor,Ski \
-  --shader mesh:Puc,Shw,Pcf,Nor,Fog \
-  --shader mesh:Puc,Shw,Pcf,Nor,Fog,Ski \
-  --shader mesh:Puc,Shw,Pcf,Nor,Vc4 \
-  --shader mesh:Puc,Shw,Pcf,Nor,Vc4,Ski \
-  --shader mesh:Puc,Shw,Pcf,Nor,Vc4,Fog \
-  --shader mesh:Puc,Shw,Pcf,Nor,Vc4,Ist \
-  --shader mesh:Puc,Shw,Pcf,Nor,Vc4,Fog,Ski \
-  --shader mesh:Puc,Shw,Pcf,Nor,Tan,Mta,Mnr \
-  --shader mesh:Puc,Shw,Pcf,Nor,Tan,Mta,Mnr,Mtg \
-  --shader mesh:Puc,Shw,Pcf,Nor,Tan,Fog,Mta,Mnr \
-  --shader mesh:Puc,Shw,Pcf,Nor,Tan,Fog,Mta,Mnr,Mtg \
+  --shader mesh:Puc,Shw,Nor \
+  --shader mesh:Puc,Shw,Nor,Ski \
+  --shader mesh:Puc,Shw,Nor,Fog \
+  --shader mesh:Puc,Shw,Nor,Fog,Ski \
+  --shader mesh:Puc,Shw,Nor,Vc4 \
+  --shader mesh:Puc,Shw,Nor,Vc4,Ski \
+  --shader mesh:Puc,Shw,Nor,Vc4,Fog \
+  --shader mesh:Puc,Shw,Nor,Vc4,Ist \
+  --shader mesh:Puc,Shw,Nor,Vc4,Fog,Ski \
+  --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr \
+  --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr,Mtg \
+  --shader mesh:Puc,Shw,Nor,Tan,Fog,Mta,Mnr \
+  --shader mesh:Puc,Shw,Nor,Tan,Fog,Mta,Mnr,Mtg \
   --shader depth \
   --shader depth:Tex \
   --shader depth:Tex,Ist \

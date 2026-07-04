@@ -34,6 +34,14 @@ GITHUB_API_HEADERS = {
 
 EDITOR_WORKFLOW_FILE = 'cmake.yml'
 
+def github_actions_escape(value):
+    return value.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+
+def show_alert(message):
+    print("Warning: %s" % message, flush=True)
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        print("::warning::%s" % github_actions_escape(message), flush=True)
+
 def copyResourcesDir(src, dst):
     if os.path.exists(src):
         if os.path.exists(dst) and os.path.isdir(dst):
@@ -132,23 +140,41 @@ def get_editor_executable_name():
         return 'doriax-editor.exe'
     return 'doriax-editor'
 
+def find_successful_workflow_run(owner, repo_name, commit_sha):
+    workflow_runs_url = (
+        'https://api.github.com/repos/%s/%s/actions/workflows/%s/runs?head_sha=%s&per_page=100'
+        % (owner, repo_name, EDITOR_WORKFLOW_FILE, commit_sha)
+    )
+    workflow_runs = github_api_get_json(workflow_runs_url).get('workflow_runs', [])
+    return next((run for run in workflow_runs if run.get('conclusion') == 'success'), None)
+
 def download_doriax_editor(repo_url, repo_dir):
     owner, repo_name = parse_github_repo(repo_url)
-    head_sha = git.Repo(repo_dir).head.commit.hexsha
+    repo = git.Repo(repo_dir)
+    head_commit = repo.head.commit
+    head_sha = head_commit.hexsha
     artifact_name = get_editor_artifact_name()
     executable_name = get_editor_executable_name()
 
-    workflow_runs_url = (
-        'https://api.github.com/repos/%s/%s/actions/workflows/%s/runs?head_sha=%s&per_page=100'
-        % (owner, repo_name, EDITOR_WORKFLOW_FILE, head_sha)
-    )
-    workflow_runs = github_api_get_json(workflow_runs_url).get('workflow_runs', [])
-    workflow_run = next((run for run in workflow_runs if run.get('conclusion') == 'success'), None)
+    workflow_run = find_successful_workflow_run(owner, repo_name, head_sha)
     if workflow_run is None:
-        sys.exit(
-            "Error: Could not find a successful %s workflow run for %s at commit %s"
-            % (EDITOR_WORKFLOW_FILE, repo_name, head_sha)
+        if not head_commit.parents:
+            sys.exit(
+                "Error: Could not find a successful %s workflow run for %s at commit %s"
+                % (EDITOR_WORKFLOW_FILE, repo_name, head_sha)
+            )
+
+        previous_sha = head_commit.parents[0].hexsha
+        show_alert(
+            "Could not find a successful %s workflow run for %s at commit %s; using previous commit %s."
+            % (EDITOR_WORKFLOW_FILE, repo_name, head_sha, previous_sha)
         )
+        workflow_run = find_successful_workflow_run(owner, repo_name, previous_sha)
+        if workflow_run is None:
+            sys.exit(
+                "Error: Could not find a successful %s workflow run for %s at commit %s or previous commit %s"
+                % (EDITOR_WORKFLOW_FILE, repo_name, head_sha, previous_sha)
+            )
 
     artifacts = github_api_get_json(workflow_run['artifacts_url']).get('artifacts', [])
     artifact = next(
