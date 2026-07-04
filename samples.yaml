@@ -83,6 +83,13 @@ tests:
      - cpp
      - lua
 
+  - name: "Lights 2D"
+    desc: "Using lights in a 2D environment"
+    path: lights2d
+    langs:
+      - cpp
+      - lua
+
   - name: "Tilemap"
     desc: "Walk across a platformer map"
     path: tilemap

@@ -72,6 +72,7 @@ exec "$EDITOR" shaders \
   --shader mesh:Puc,Shw,Nor,Vc4,Fog \
   --shader mesh:Puc,Shw,Nor,Vc4,Ist \
   --shader mesh:Puc,Shw,Nor,Vc4,Fog,Ski \
+  --shader mesh:Ult,Uv1,Nor,Tan,Vc4,Txr,L2d,S2d \
   --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr \
   --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr,Mtg \
   --shader mesh:Puc,Shw,Nor,Tan,Fog,Mta,Mnr \
@@ -89,6 +90,7 @@ exec "$EDITOR" shaders \
   --shader depth:Mta,Mnr,Ist \
   --shader depth:Mta,Mnr,Mtg,Ist \
   --shader depth:Ter \
+  --shader shadow2d \
   --shader sky \
   --shader ui:Vc4 \
   --shader ui:Tex,Vc4 \
