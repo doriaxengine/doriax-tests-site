@@ -33,6 +33,7 @@ GITHUB_API_HEADERS = {
 }
 
 EDITOR_WORKFLOW_FILE = 'cmake.yml'
+BUILD_TARGET_NAME = 'doriax-test'
 
 def github_actions_escape(value):
     return value.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
@@ -42,11 +43,11 @@ def show_alert(message):
     if os.environ.get('GITHUB_ACTIONS') == 'true':
         print("::warning::%s" % github_actions_escape(message), flush=True)
 
-def copyResourcesDir(src, dst):
+def copyResourcesDir(src, dst, copy_function=shutil.copy2):
     if os.path.exists(src):
         if os.path.exists(dst) and os.path.isdir(dst):
             shutil.rmtree(dst)
-        shutil.copytree(src, dst, False, None)
+        shutil.copytree(src, dst, False, None, copy_function=copy_function)
 
 def moveSource(src, dst, exts):
     if os.path.exists(dst) and os.path.isdir(dst):
@@ -263,7 +264,9 @@ def build_test(project_name, project_path, app_name, language, tests_repo, tests
     
     test_path = os.path.abspath(os.path.join(tests_root, project_path))
     staged_test_path = os.path.abspath('project_web')
-    copyResourcesDir(test_path, staged_test_path)
+    # Give staged sources fresh mtimes so the stable target recompiles the
+    # project's own changed files while retaining the engine object files.
+    copyResourcesDir(test_path, staged_test_path, shutil.copy)
 
     if language == 'cpp':
         source_test_path = os.path.join(test_path, 'main.cpp')
@@ -313,11 +316,6 @@ def build_test(project_name, project_path, app_name, language, tests_repo, tests
     # Build using cmake directly
     build_dir = os.path.abspath('build_web')
 
-    # Delete cmake cache to trigger a fresh configure for each sample (APP_NAME changes per sample)
-    cmake_cache = os.path.join(build_dir, 'CMakeCache.txt')
-    if os.path.exists(cmake_cache):
-        os.remove(cmake_cache)
-
     if language == 'cpp':
         compile_defs = '-DNO_LUA_INIT'
     else:
@@ -331,7 +329,9 @@ def build_test(project_name, project_path, app_name, language, tests_repo, tests
         '-B', build_dir,
         '-DCMAKE_TOOLCHAIN_FILE=' + emscripten_toolchain,
         '-DCMAKE_BUILD_TYPE=Release',
-        '-DAPP_NAME=' + app_name,
+        # Doriax exposes APP_NAME as a global compile definition. Keep it stable
+        # so changing samples does not invalidate every engine object file.
+        '-DAPP_NAME=' + BUILD_TARGET_NAME,
         '-DDORIAX_ROOT=' + doriax_root,
         # Keep the project root path stable so the engine target can reuse compiled objects.
         '-DPROJECT_ROOT=' + staged_test_path,
@@ -355,7 +355,7 @@ def build_test(project_name, project_path, app_name, language, tests_repo, tests
     moveSource(src_dir, dst_dir, ('.html', '.map', '.wasm', '.js', '.data'))
 
     os.rename(
-        os.path.join(dst_dir, app_name+'.html'), 
+        os.path.join(dst_dir, BUILD_TARGET_NAME+'.html'),
         os.path.join(dst_dir, 'index.html')
         )
     
