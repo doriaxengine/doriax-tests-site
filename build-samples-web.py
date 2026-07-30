@@ -125,11 +125,11 @@ def get_editor_artifact_name():
     if artifact_name:
         return artifact_name
     if sys.platform.startswith('linux'):
-        return 'ubuntu_gcc'
+        return 'doriax_linux'
     if sys.platform == 'darwin':
-        return 'macos_clang'
+        return 'doriax_macos'
     if os.name == 'nt':
-        return 'windows_msvc'
+        return 'doriax_windows'
     sys.exit("Error: Unsupported host platform for doriax-editor artifact download")
 
 def get_editor_executable_name():
