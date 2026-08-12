@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Build all shaders for all platforms.
 # Usage: ./build_all_shaders.sh <output-dir>
 
 # /*
@@ -14,6 +13,7 @@ OUT="${1:?Usage: $0 <output-dir>}"
 exec "$EDITOR" shaders \
   --out "$OUT" \
   --format header \
+  --backend opengles \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4 \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4,Fog \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4,Ski \
