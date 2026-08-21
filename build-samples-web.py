@@ -149,6 +149,23 @@ def find_successful_workflow_run(owner, repo_name, commit_sha):
     workflow_runs = github_api_get_json(workflow_runs_url).get('workflow_runs', [])
     return next((run for run in workflow_runs if run.get('conclusion') == 'success'), None)
 
+def find_successful_workflow_run_in_history(owner, repo_name, commit):
+    head_sha = commit.hexsha
+    current = commit
+    while current is not None:
+        workflow_run = find_successful_workflow_run(owner, repo_name, current.hexsha)
+        if workflow_run is not None:
+            if current.hexsha != head_sha:
+                show_alert(
+                    "Could not find a successful %s workflow run for %s at commit %s; using commit %s."
+                    % (EDITOR_WORKFLOW_FILE, repo_name, head_sha, current.hexsha)
+                )
+            return workflow_run
+        if not current.parents:
+            break
+        current = current.parents[0]
+    return None
+
 def download_doriax_editor(repo_url, repo_dir):
     owner, repo_name = parse_github_repo(repo_url)
     repo = git.Repo(repo_dir)
@@ -157,25 +174,12 @@ def download_doriax_editor(repo_url, repo_dir):
     artifact_name = get_editor_artifact_name()
     executable_name = get_editor_executable_name()
 
-    workflow_run = find_successful_workflow_run(owner, repo_name, head_sha)
+    workflow_run = find_successful_workflow_run_in_history(owner, repo_name, head_commit)
     if workflow_run is None:
-        if not head_commit.parents:
-            sys.exit(
-                "Error: Could not find a successful %s workflow run for %s at commit %s"
-                % (EDITOR_WORKFLOW_FILE, repo_name, head_sha)
-            )
-
-        previous_sha = head_commit.parents[0].hexsha
-        show_alert(
-            "Could not find a successful %s workflow run for %s at commit %s; using previous commit %s."
-            % (EDITOR_WORKFLOW_FILE, repo_name, head_sha, previous_sha)
+        sys.exit(
+            "Error: Could not find a successful %s workflow run for %s at commit %s or any previous commit"
+            % (EDITOR_WORKFLOW_FILE, repo_name, head_sha)
         )
-        workflow_run = find_successful_workflow_run(owner, repo_name, previous_sha)
-        if workflow_run is None:
-            sys.exit(
-                "Error: Could not find a successful %s workflow run for %s at commit %s or previous commit %s"
-                % (EDITOR_WORKFLOW_FILE, repo_name, head_sha, previous_sha)
-            )
 
     artifacts = github_api_get_json(workflow_run['artifacts_url']).get('artifacts', [])
     artifact = next(

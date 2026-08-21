@@ -88,6 +88,25 @@
         resizeTimer = setTimeout(resizeCanvas, 100);
       }, false);
 
+      // Keep arrow/WASD/space for the sample. Without this the browser
+      // scrolls the page and those keys never look like they do anything.
+      window.addEventListener('keydown', function(e) {
+        if (e.altKey || e.ctrlKey || e.metaKey) return;
+        switch (e.code) {
+          case 'ArrowUp':
+          case 'ArrowDown':
+          case 'ArrowLeft':
+          case 'ArrowRight':
+          case 'Space':
+          case 'KeyW':
+          case 'KeyA':
+          case 'KeyS':
+          case 'KeyD':
+            e.preventDefault();
+            break;
+        }
+      }, true);
+
       function resizeCanvas() {
         if (!wrapper) return;
         if (!changeCanvasSizeFn && typeof Module.cwrap === 'function') {

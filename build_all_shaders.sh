@@ -19,6 +19,7 @@ exec "$EDITOR" shaders \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4,Ski \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Vc4,Fog,Ski \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan \
+  --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Aop \
   --shader mesh:Uv1,Puc,Nor,Nmp,Tan,Fog \
   --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Tan,Vc4 \
   --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Tan,Vc4,Fog \
@@ -29,22 +30,31 @@ exec "$EDITOR" shaders \
   --shader mesh:Uv1,Puc,Nor \
   --shader mesh:Uv1,Puc,Nor,Fog \
   --shader mesh:Uv1,Puc,Nor,Vc4,Txr \
+  --shader mesh:Uv1,Puc,Nor,Tan,Vc4,Txr \
   --shader mesh:Uv1,Puc,Nor,Vc4,Txr,Ist \
+  --shader mesh:Uv1,Puc,Nor,Tan,Vc4,Txr,Ist \
   --shader mesh:Uv1,Puc,Nor,Vc4,Ist \
   --shader mesh:Uv1,Puc,Shw,Nor,Vc4 \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Ams \
   --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Ist \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Ist,Ams \
   --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Fog \
+  --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Fog,Ams \
   --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Txr \
+  --shader mesh:Uv1,Puc,Shw,Nor,Tan,Vc4,Txr \
   --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Fog,Ist \
   --shader mesh:Uv1,Puc,Shw,Nor,Vc4,Txr,Ist \
   --shader mesh:Uv1,Puc,Shw,Nor \
   --shader mesh:Uv1,Puc,Shw,Nor,Ski \
+  --shader mesh:Uv1,Puc,Shw,Nor,Ski,Aop \
   --shader mesh:Uv1,Puc,Shw,Nor,Ski,Ist \
   --shader mesh:Uv1,Puc,Shw,Nor,Nmp,Vc4 \
   --shader mesh:Uv1,Puc,Shw,Nor,Fog \
   --shader mesh:Uv1,Puc,Shw,Nor,Fog,Ist \
   --shader mesh:Uv1,Puc,Shw,Nor,Fog,Ski \
   --shader mesh:Ult,Uv1,Vc4 \
+  --shader mesh:Ult,Uv1,Vc4,Ams \
+  --shader mesh:Ult,Uv1,Vc4,Mir \
   --shader mesh:Ult,Uv1,Vc4,Fog \
   --shader mesh:Ult \
   --shader mesh:Ult,Uv1 \
@@ -71,15 +81,19 @@ exec "$EDITOR" shaders \
   --shader mesh:Puc,Shw,Nor,Vc4,Ski \
   --shader mesh:Puc,Shw,Nor,Vc4,Fog \
   --shader mesh:Puc,Shw,Nor,Vc4,Ist \
+  --shader mesh:Puc,Shw,Nor,Vc4,Ist,Aop \
   --shader mesh:Puc,Shw,Nor,Vc4,Fog,Ski \
   --shader mesh:Ult,Uv1,Nor,Tan,Vc4,Txr,L2d,S2d \
   --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr \
   --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr,Mtg \
+  --shader mesh:Puc,Shw,Nor,Tan,Mta,Mnr,Mtg,Aop \
   --shader mesh:Puc,Shw,Nor,Tan,Fog,Mta,Mnr \
   --shader mesh:Puc,Shw,Nor,Tan,Fog,Mta,Mnr,Mtg \
   --shader depth \
   --shader depth:Tex \
+  --shader depth:Tex,Ams \
   --shader depth:Tex,Ist \
+  --shader depth:Tex,Ist,Ams \
   --shader depth:Ski \
   --shader depth:Mta \
   --shader depth:Mta,Mnr \
