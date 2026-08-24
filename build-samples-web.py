@@ -12,6 +12,7 @@ import git
 import datetime
 import json
 import stat
+import tarfile
 import urllib.error
 import urllib.request
 import zipfile
@@ -126,7 +127,9 @@ def get_editor_artifact_name():
     if artifact_name:
         return artifact_name
     if sys.platform.startswith('linux'):
-        return 'doriax_linux'
+        # The plain doriax_linux artifact is now the AppImage, and artifact zips
+        # drop the executable bit anyway, so use the tarball artifact instead.
+        return 'doriax_linux_tarball'
     if sys.platform == 'darwin':
         return 'doriax_macos'
     if os.name == 'nt':
@@ -140,6 +143,48 @@ def get_editor_executable_name():
     if os.name == 'nt':
         return 'doriax-editor.exe'
     return 'doriax-editor'
+
+def is_safe_archive_path(destination_root, member_name):
+    member_path = os.path.abspath(os.path.join(destination_root, member_name))
+    return member_path == destination_root or member_path.startswith(destination_root + os.sep)
+
+def extract_zip(archive_path, destination):
+    destination_root = os.path.abspath(destination)
+    with zipfile.ZipFile(archive_path) as archive:
+        for member in archive.infolist():
+            if not is_safe_archive_path(destination_root, member.filename):
+                sys.exit("Error: Artifact contains an unsafe path: %s" % member.filename)
+        archive.extractall(destination)
+
+def extract_tarball(archive_path, destination):
+    destination_root = os.path.abspath(destination)
+    with tarfile.open(archive_path) as archive:
+        for member in archive.getmembers():
+            if not is_safe_archive_path(destination_root, member.name):
+                sys.exit("Error: Artifact contains an unsafe path: %s" % member.name)
+        # The data filter keeps the executable bit, which is the whole reason
+        # the Linux build ships a tarball inside the artifact zip.
+        if hasattr(tarfile, 'data_filter'):
+            archive.extractall(destination, filter='data')
+        else:
+            archive.extractall(destination)
+
+def unpack_nested_tarballs(destination):
+    tarballs = []
+    for root, _dirs, files in os.walk(destination):
+        for name in files:
+            if name.lower().endswith(('.tar.gz', '.tgz')):
+                tarballs.append(os.path.join(root, name))
+
+    for archive_path in tarballs:
+        extract_tarball(archive_path, destination)
+        os.remove(archive_path)
+
+def find_editor_executable(destination, executable_name):
+    for root, _dirs, files in os.walk(destination):
+        if executable_name in files:
+            return os.path.join(root, executable_name)
+    return None
 
 def find_successful_workflow_run(owner, repo_name, commit_sha):
     workflow_runs_url = (
@@ -203,19 +248,16 @@ def download_doriax_editor(repo_url, repo_dir):
     print("Downloading doriax-editor artifact: %s" % artifact_name, flush=True)
     download_file(download_url, archive_path)
 
-    with zipfile.ZipFile(archive_path) as archive:
-        archive.extractall(download_dir)
-        if executable_name not in archive.namelist():
-            sys.exit("Error: Artifact %s does not contain %s" % (artifact_name, executable_name))
-        executable_mode = stat.S_IMODE(archive.getinfo(executable_name).external_attr >> 16)
-
+    extract_zip(archive_path, download_dir)
     os.remove(archive_path)
+    unpack_nested_tarballs(download_dir)
 
-    editor_path = os.path.join(download_dir, executable_name)
+    editor_path = find_editor_executable(download_dir, executable_name)
+    if editor_path is None:
+        sys.exit("Error: Artifact %s does not contain %s" % (artifact_name, executable_name))
+
     if os.name != 'nt':
-        if executable_mode == 0:
-            executable_mode = stat.S_IMODE(os.stat(editor_path).st_mode) | stat.S_IXUSR
-        os.chmod(editor_path, executable_mode)
+        os.chmod(editor_path, stat.S_IMODE(os.stat(editor_path).st_mode) | stat.S_IXUSR)
 
     return download_dir, editor_path
 
