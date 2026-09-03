@@ -29,7 +29,7 @@
   --transition: 0.15s ease;
   --container-max: 1240px;
   --test-stage-max: 1000px;
-  --font-sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  --font-sans: 'Roboto', 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 }
 
