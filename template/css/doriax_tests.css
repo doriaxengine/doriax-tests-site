@@ -62,7 +62,7 @@ a {
 a:hover { color: var(--accent-3); }
 
 .text-gradient {
-  color: var(--accent-2);
+  color: inherit;
 }
 
 /* --- Container --- */
@@ -173,10 +173,10 @@ a:hover { color: var(--accent-3); }
 }
 
 .page-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -0.035em;
+  font-size: clamp(1.85rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   margin-bottom: 12px;
 }
 
@@ -199,16 +199,12 @@ a:hover { color: var(--accent-3); }
 .test-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-left: 2px solid var(--border-color);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: all var(--transition);
 }
 
 .test-card:hover {
   border-color: var(--border-hover);
-  border-left-color: var(--accent-1);
-  background: var(--bg-card-hover);
 }
 
 .test-card-thumb {
@@ -221,11 +217,6 @@ a:hover { color: var(--accent-3); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.test-card:hover .test-card-thumb img {
-  transform: scale(1.05);
 }
 
 .test-card-body {
@@ -255,18 +246,17 @@ a:hover { color: var(--accent-3); }
 
 .test-card-langs a {
   font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent-3);
-  background: rgba(143, 182, 220, 0.1);
-  border: 1px solid rgba(143, 182, 220, 0.2);
+  font-weight: 500;
+  color: var(--accent-2);
+  border: 1px solid var(--border-color);
   padding: 3px 10px;
-  border-radius: 100px;
-  transition: all var(--transition);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), border-color var(--transition);
 }
 
 .test-card-langs a:hover {
-  background: rgba(143, 182, 220, 0.2);
-  color: #fff;
+  color: var(--accent-3);
+  border-color: var(--border-hover);
 }
 
 .test-card-desc {
@@ -285,34 +275,20 @@ a:hover { color: var(--accent-3); }
 
 .test-title {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
 
 .test-lang-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.74rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-3);
-  background: rgba(143, 182, 220, 0.08);
-  border: 1px solid rgba(143, 182, 220, 0.22);
-  border-left: 3px solid var(--accent-3);
-  padding: 5px 14px;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-muted);
   margin-bottom: 12px;
-}
-.test-lang-badge::before {
-  content: '';
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent-3);
-  box-shadow: 0 0 10px var(--accent-3);
 }
 
 .test-change {
@@ -491,7 +467,7 @@ canvas.emscripten {
   height: 48px;
   width: auto;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .footer-brand p {
